@@ -1,7 +1,14 @@
 package com.cos.project.domain;
 
+import java.time.LocalDateTime;
+
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -11,6 +18,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+@EntityListeners(AuditingEntityListener.class)
+//- AuditingEntityListener는 JPA의 엔티티 생명주기 이벤트(예: persist, update 등)를 감지합니다.
+//- 이를 통해 @CreatedDate, @LastModifiedDate, @CreatedBy, @LastModifiedBy 같은 어노테이션이 동작하게 됩니다.
 @Entity
 @Getter
 @NoArgsConstructor
@@ -31,6 +41,15 @@ public class Article {
 	private String content;
 
 
+	@CreatedDate	//엔티티에 생성 시간 추가
+	@Column(name = "created_at")
+	private LocalDateTime createdAt;
+	
+	@LastModifiedDate	//엔티티에 수정 시간 추가
+	@Column(name = "updated_at")
+	private LocalDateTime updatedAt;
+	
+	
 	
 	
 	@Builder
