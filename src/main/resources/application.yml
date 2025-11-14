@@ -7,8 +7,17 @@ spring:
     console:
       enabled: true
 
-
-  
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 719745319206-kp2f........
+            client-secret: GOCSPX-Re0eF..............
+            scope:
+              - email
+              - profile
+              
   application:
     name: BlogApi
     

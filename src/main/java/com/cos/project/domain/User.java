@@ -37,6 +37,11 @@ public class User implements UserDetails {
     @Column(name = "email", nullable = false, unique = true) // 이메일은 필수이며 중복 불가
     private String email;
 
+    
+    @Column(name = "nickname", unique = true)
+    private String nickname;
+    
+    
     @Column(name = "password") // 비밀번호 저장
     private String password;
 
@@ -46,10 +51,26 @@ public class User implements UserDetails {
      * @param password 사용자 비밀번호
      * @param auth 권한 정보 (현재는 사용되지 않음)
      */
-    @Builder
-    public User(String email, String password, String auth) {
-        this.email = email;
-        this.password = password;
+//    @Builder			//토큰 인증 방식 생성자
+//    public User(String email, String password, String auth) {
+//        this.email = email;
+//        this.password = password;
+//    }
+    
+    
+    
+  @Builder			//토큰 인증 방식 생성자
+  public User(String email, String password, String nickname) {
+      this.email = email;
+      this.password = password;
+      this.nickname = nickname;
+  }
+    
+
+    
+    public User update(String nickname) {
+        this.nickname = nickname;
+        return this;
     }
 
     /**

@@ -1,5 +1,6 @@
 package com.cos.project.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -29,12 +30,18 @@ public class BlogApiController {
 	private final BlogService blogService;
 	
 	//HTTP 메서드가 POST일 때 전달받은 URL 과 동일하면 메서드로 매핑
-	@PostMapping("/api/articles")
-	public ResponseEntity<Article> addArticle( @RequestBody AddArticleRequest request){
-		Article savedArticle = blogService.save(request);
-		return ResponseEntity.status(HttpStatus.CREATED).body(savedArticle);
-	}
 	
+//	@PostMapping("/api/articles")
+//	public ResponseEntity<Article> addArticle( @RequestBody AddArticleRequest request){
+//		Article savedArticle = blogService.save(request);
+//		return ResponseEntity.status(HttpStatus.CREATED).body(savedArticle);
+//	}
+	   @PostMapping("/api/articles")
+	    public ResponseEntity<Article> addArticle(@RequestBody AddArticleRequest request, Principal principal) {
+	        Article savedArticle = blogService.save(request, principal.getName());
+	        return ResponseEntity.status(HttpStatus.CREATED)
+	                .body(savedArticle);
+	    }
 	
 	@GetMapping("/api/articles")
 	public ResponseEntity<List<ArticleResponse>> findAllArticle(){
