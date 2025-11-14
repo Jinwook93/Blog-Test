@@ -19,4 +19,8 @@ public class UserService {
 	public Long save (AddUserRequest dto) {
 		return userRepository.save(User.builder().email(dto.getEmail()).password(bCryptPasswordEncoder.encode(dto.getPassword())).build()).getId();
 	}
+	
+	public User findById(Long Id) {		
+		return userRepository.findById(Id).orElseThrow(() -> new IllegalArgumentException("Unexpected user"));
+	}
 }

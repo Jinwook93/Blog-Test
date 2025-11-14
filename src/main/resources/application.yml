@@ -6,7 +6,9 @@ spring:
   h2:
     console:
       enabled: true
-          
+
+
+  
   application:
     name: BlogApi
     
@@ -27,12 +29,17 @@ server:
   tomcat:
     connection-timeout: 30000  
     
-    
-    
-    
-    
+
   # Spring Boot가 data.sql을 자동 실행하는 이유
 #1. Spring Boot의 자동 감지 기능
 #- Spring Boot는 애플리케이션 시작 시 classpath에 있는 data.sql 파일을 자동으로 감지해요.
 #- 보통 src/main/resources/data.sql 위치에 있으면 자동으로 실행 대상이 돼요.
 #- 명시적으로 지정하지 않아도, 해당 경로에 파일이 있으면 Spring이 알아서 실행해요.
+
+
+
+
+
+jwt:
+  issuer: ajufresh@gmail.com
+  secret_key: study-springboot
